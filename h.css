@@ -72,12 +72,12 @@ body {
         box-shadow: 0 0 10px #fff;
     }
     to {
-        box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff, 0 0 50px #ff00ff, 0 0 60px #ff00ff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
+        box-shadow: 0 0 20px #001aff, 0 0 30px #8000ff, 0 0 40px #0051ff, 0 0 50px #0077ff, 0 0 60px #003cff, 0 0 70px #ff00ff, 0 0 80px #ff00ff;
     }
 }
 
 .card {
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
@@ -87,8 +87,10 @@ body {
     border: 5px solid white;
     background-clip: padding-box;
     position: relative;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
     animation: glow 2s infinite alternate;
+    margin-top: 30px;
+
 }
 
 .card::before {
@@ -134,7 +136,7 @@ ul {
     margin-top: 20px; padding-bottom: 10px;font-size: 30px;
 }
 
-p, h2, h4 {
+p, h2, h4{
     margin: 10px 0;
     font-weight: bold;
     font-family: 'Arial', sans-serif;
@@ -167,3 +169,27 @@ p {
     font-size: 20px;
 }
 
+a {
+    font-size: 15px;
+    color: #000dff;
+    font-weight: bold;
+    
+}
+.blue-button {
+    display: inline-block;
+    padding: 10px 10px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #6200ff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+
+.blue-button:hover {
+    background-color: #0056b3;
+}
