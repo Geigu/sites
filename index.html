@@ -1,126 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
-    <link rel="stylesheet" href="h.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Geigi.net</title>
+  <link rel="icon" href="icon3 (1).png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: #eaf3ff;
+      font-family: 'Inter', sans-serif;
+    }
+    .glow {
+      position: fixed;
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,123,255,0.2) 0%, rgba(59,123,255,0) 70%);
+      pointer-events: none;
+      z-index: -1;
+      animation: float 10s ease-in-out infinite;
+    }
+    .glow-2 { animation-delay: 2s; }
+    @keyframes float {
+      0%,100% { transform: translate(0,0);}
+      25% { transform: translate(30px,20px);}
+      50% { transform: translate(0,40px);}
+      75% { transform: translate(-30px,20px);}
+    }
+    .social-card {
+      background: #162a4d;
+      color: #eaf3ff;
+      border-radius: 8px;
+      padding: 0.5em 1em;
+      display: flex;
+      align-items: center;
+      gap: 0.7em;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px #0003;
+      transition: background 0.18s, color 0.18s;
+      text-decoration: none;
+      margin-right: 0.5em;
+    }
+    .social-card:last-child { margin-right: 0; }
+    .social-card:hover {
+      background: #3b7bff;
+      color: #fff;
+    }
+    .main-card {
+      background: #162a4d99;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 32px #0007;
+      padding: 2.5em 2em 2.2em 2em;
+      border: 1.5px solid #3b7bff44;
+      max-width: 420px;
+      margin: 110px auto 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .profile-pic-container {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 1.2rem;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid #3b7bff;
+      box-shadow: 0 0 20px rgba(59,123,255,0.25);
+      background: #101a2b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .main-title {
+      color: #3b7bff;
+      font-size: 2rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 0.5em;
+      letter-spacing: 0.5px;
+    }
+    .splash-text {
+      color: #ffd700;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 1.08rem;
+      text-align: center;
+      margin-bottom: 1.2em;
+      min-height: 1.5em;
+      letter-spacing: 0.5px;
+    }
+    .desc {
+      color: #eaf3ff;
+      text-align: center;
+      font-size: 1.08rem;
+      margin-bottom: 1.5em;
+      line-height: 1.6;
+    }
+    .socials-row {
+      display: flex;
+      gap: 0.7em;
+      justify-content: center;
+      margin-top: 1.2em;
+      margin-bottom: 0.2em;
+    }
+    @media (max-width: 600px) {
+      .main-card { padding: 1.2em 0.7em 1em 0.7em; }
+      .main-title { font-size: 1.3rem; }
+      .profile-pic-container { width: 80px; height: 80px; }
+    }
+  </style>
 </head>
-<body>
-    <div id="language-selection" class="language-selection">
-        <div class="card">
-            <h1>Select Language:</h1>
-            <div class="flags">
-                <a href="#" onclick="showPage('english')">
-                    <img src="Flag_of_the_United_Kingdom.png" alt="English">
-                </a>
-                <a href="#" onclick="showPage('german')">
-                    <img src="des.png" alt="Deutsch">
-                </a>
-            </div>
-        </div>
-    </div>
+<body class="bg-[#0a0a0a]">
 
-    <div id="english-page" class="page" style="display: none;">
-       
-        <div class="card">
-            
-            <h2 class="name">Hey! I am Geigi and here are a few things about me:</h2>
-            <p>I am 16 years old and live in Europe.</p>
-            <p>I like programming websites with CSS and HTML.</p>
-            <p>Favorite series Dexter or Breaking Bad. </p>
-            <p>OG Usernames and other rare things fascinate me.</p>
-            <a href="https://github.com/geigu" class="blue-button" target="_blank"> View my Projects</a>
-            <h2 class="skills">Skills:</h2>
-            <p>Graphic Designing</p>
-            <p>Video Editing</p>
-            <p>Experience in CSS and HTML</p>
-            <h4 class="danke">Thank you for reading! Contact me with the white buttons below :)</h4>
-            <div class="icons">
-                <img src="gmail.png" alt="Gmail" id="gmail-icon-en">
-                <a href="https://github.com/geigu" target="_blank">
-                    <img src="github.png" alt="GitHub">
-                </a>
-                <img src="discord.png" alt="Discord" id="discord-icon-en">
-<a href="https://www.youtube.com/@mcusernames" target="_blank">
-                    <img class="yt" src="image.png" alt="YouTube">
-                </a>
-                
-            </div>
-        </div>
-    </div>
+<div class="glow top-20 left-16"></div>
+<div class="glow glow-2 bottom-20 right-16"></div>
 
-    <div id="german-page" class="page" style="display: none;">
-       
-        <div class="card">
-            
-            <h2 class="name">Hey! Mein Name ist Geigi und hier sind ein paar Sachen über mich:</h2>
-            <p>Ich bin 16 Jahre alt und lebe in Europa.</p>
-            <p>Ich programmiere gerne Webseiten mit CSS und HTML.</p>
-            <p>Meine Lieblings-Serien sind Dexter und Breaking Bad.</p>
-            <p>OG Benutzernamen und andere Seltene Sachen faszinieren mich.</p>
-            <a href="https://github.com/geigu" class="blue-button" target="_blank"> Meine Projekte</a>
-            <h2 class="skills">Fähigkeiten:</h2>
-            <p>Grafikdesign</p>
-            <p>Video-Editing</p>
-            <p>Erfahrung in CSS und HTML</p>
-            <h4 class="danke">Vielen Dank fürs Lesen! Kontaktiere mich mit den weissen Buttons unten :)</h4>
-            <div class="icons">
-                <img src="gmail.png" alt="Gmail" id="gmail-icon-de">
-                <a href="https://github.com/geigu" target="_blank">
-                    <img src="github.png" alt="GitHub">
-                </a>
-                <img src="discord.png" alt="Discord" id="discord-icon-de">
-                
-<a href="https://www.youtube.com/@mcusernames" target="_blank">
-                    <img  class="yt"src="image.png" alt="YouTube">
-            </div>
-        </div>
-    </div>
+<div class="main-card">
+  <div class="profile-pic-container">
+    <img src="Image (54).jpg" alt="Profile Picture" class="profile-pic">
+  </div>
+  <div class="main-title">Geigi</div>
+ 
+  <div class="desc">
+    Hi, I’m Geigi – welcome to my personal site! I’ve been part of the OG Community for over 4 years, gaining experience, making connections, and contributing to projects I’m passionate about. 
+   <br>
+   <br>
+   <b style="color: #ffd700;">You can contact me with the Buttons below!</b>
+  
+  <div class="socials-row">
+    <a class="social-card" href="https://discord.com/users/463953200559685632" target="_blank" rel="noopener noreferrer">
+      <img src="discord.png" alt="Discord" style="width:24px;height:24px;object-fit:contain;">
+      @geigi
+    </a>
+    <a class="social-card" href="https://oguser.com/geigi" target="_blank" rel="noopener noreferrer">
+      <img src="Oguserslogo.png" alt="OGU" style="width:24px;height:24px;object-fit:contain;">
+      /geigi
+    </a>
+  </div>
+</div>
 
-    <script>
-        function showPage(language) {
-            document.getElementById('language-selection').style.display = 'none';
-            if (language === 'english') {
-                document.getElementById('english-page').style.display = 'block';
-                history.pushState(null, '', '/AboutMe/english');
-            } else if (language === 'german') {
-                document.getElementById('german-page').style.display = 'block';
-                history.pushState(null, '', '/AboutMe/deutsch');
-            }
-        }
-
-        document.getElementById('gmail-icon-en').addEventListener('click', function() {
-            navigator.clipboard.writeText('geigicraft@gmail.com').then(function() {
-                alert('Email copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        });
-
-        document.getElementById('gmail-icon-de').addEventListener('click', function() {
-            navigator.clipboard.writeText('geigicraft@gmail.com').then(function() {
-                alert('Email copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        });
-
-        document.getElementById('discord-icon-en').addEventListener('click', function() {
-            navigator.clipboard.writeText('@copying').then(function() {
-                alert('Discord username copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        });
-
-        document.getElementById('discord-icon-de').addEventListener('click', function() {
-            navigator.clipboard.writeText('@copying').then(function() {
-                alert('Discord username copied to clipboard');
-            }, function(err) {
-                console.error('Could not copy text: ', err);
-            });
-        });
-    </script>
 </body>
 </html>
+
