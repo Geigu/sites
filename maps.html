@@ -333,11 +333,11 @@
         </div>
         <div class="stat-item">
             <div class="stat-label">Completed</div>
-            <div class="stat-value">8+</div>
+            <div class="stat-value">4+</div>
         </div>
         <div class="stat-item">
             <div class="stat-label">Time Period</div>
-            <div class="stat-value">2024 - Now</div>
+            <div class="stat-value">2025 - Now</div>
         </div>
         <div class="stat-item">
             <div class="stat-label">Collection Status</div>
@@ -383,14 +383,13 @@
     </div>
 
     <script>
-        // Add your map art data here with info fields
-        // format options: 1x1, 2x1, 1x2, 2x2, 3x3, 4x4
+      
         const MAPS = [
             { 
                 title: 'River Girl', 
                 img: 'river_girl.png',
                 size: '128x128',
-                format: '1x1',
+                format: '1x1, Flat Carpet',
                 date: 'January 2026',
                 description: 'Artist: https://x.com/JPtomsZ/status/1489282005393190912'
             },
@@ -398,7 +397,7 @@
                 title: 'Shadow the Hedgehog', 
                 img: 'shadowhedgehog.png',
                 size: '128x128',
-                format: '1x1',
+                format: '1x1, Flat Carpet',
                 date: 'January 2026',
                 description: 'I like hedgehogs. Artist: https://x.com/barosaros/status/1942705253549326715'
             },
@@ -406,11 +405,18 @@
                 title: 'Axolotl (Bubble Enjoyer)', 
                 img: 'axolotl.png',
                 size: '128x128',
-                format: '1x1',
+                format: '1x1, Flat Carpet',
                 date: 'January 2026',
-                description: 'BUBBLES! Artist:'
+                description: 'BUBBLES! Artist: https://x.com/pixelgodoy/status/1630718061991927811'
             },
-            // Add more maps...
+            { 
+                title: 'Gei was here :D', 
+                img: 'gei.png',
+                size: '128x128',
+                format: '1x1, Flat Carpet',
+                date: 'December 2025',
+                description: 'My first ever Map! Used behind my signs!'
+            },
         ];
 
         const gallery = document.getElementById('gallery');
@@ -428,7 +434,7 @@
         let currentMaps = [...MAPS];
         const totalCount = document.getElementById('totalCount');
 
-        // Intersection Observer for scroll animation
+       
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry, index) => {
                 if (entry.isIntersecting) {
@@ -530,3 +536,4 @@
     </script>
 </body>
 </html>
+
