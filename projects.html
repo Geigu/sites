@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects - 2B2T Gallery</title>
+    <meta name="description" content="Current 2B2T projects">
+    
+    <style>
+        :root {
+            --bg: #0a0e27;
+            --panel: #0f1c3d;
+            --muted: #7e8ca3;
+            --accent: #3b82f6;
+            --accent-bright: #60a5fa;
+            --glass: rgba(59,130,246,.08);
+            --overlay-glass: rgba(15,28,61,.6);
+            --shadow: 0 10px 30px rgba(0,0,0,.8);
+            --yellow: #fbbf24;
+            --yellow-bright: #fcd34d;
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+        }
+
+        html, body {
+            margin: 0;
+            color: #e6eef6;
+            overflow-x: hidden;
+            background: var(--bg);
+        }
+
+        .wrap {
+            max-width: 900px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        nav {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            margin-bottom: 40px;
+        }
+
+        nav a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover {
+            color: var(--yellow-bright);
+        }
+
+        h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #f1f5f9;
+            margin: 0 0 40px 0;
+            text-align: center;
+        }
+
+        .projects {
+            display: grid;
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,.08);
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            padding: 24px;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .project-card.no-left {
+            grid-template-columns: 1fr;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--yellow);
+        }
+
+        .project-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--yellow);
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+
+        .project-card p {
+            margin: 0 0 12px 0;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .project-links a {
+            color: var(--yellow);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .project-links a:hover {
+            color: var(--yellow-bright);
+            text-decoration: underline;
+        }
+
+        .preview-left {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.08);
+            background: var(--panel);
+        }
+
+        .preview-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .preview-tile {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,.08);
+            background: var(--panel);
+        }
+
+        .preview-tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .preview-tile.clickable {
+            cursor: pointer;
+            aspect-ratio: 16 / 9;
+            transition: all 0.2s ease;
+        }
+
+        .preview-tile.clickable:hover {
+            border-color: var(--yellow);
+            transform: scale(1.02);
+        }
+
+        .image-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(10,14,39,.98);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .image-modal.show {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .image-modal-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: var(--yellow);
+            font-size: 36px;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .preview-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 13px;
+            color: var(--yellow);
+            font-weight: 700;
+            background: rgba(251,191,36,.08);
+            border: 1px dashed rgba(251,191,36,.4);
+            aspect-ratio: 16 / 9;
+            border-radius: 8px;
+        }
+
+        .more-note {
+            text-align: center;
+            margin-top: 22px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            background: rgba(251,191,36,.1);
+            border: 1px solid rgba(251,191,36,.3);
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--yellow);
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <nav>
+            <a href="index.html">← Back to Home</a>
+        </nav>
+
+        <h1>Current Projects</h1>
+
+        <div class="projects">
+            <div class="project-card no-left">
+                <div>
+                    <h3>Ice Cream Truck</h3>
+                    <p>Building ice cream truck's around 2B2T's is one of my favorite projects. This projekt is meant to not only meant to help new players with kits but also to make people smile :). So far over 45 Ice Cream Trucks have been built on 2B2T, either at cool locations near spawn or at bases in the millions...</p>
+                    <p class="project-links">Ice Cream Truck Operation featured in a short with over 5M views: <a href="https://youtube.com/shorts/" target="_blank" rel="noopener">Watch here</a></p>
+                    <span class="status">✅ Ongoing </span>
+
+                    <div class="preview-grid">
+                        <div class="preview-tile clickable"><img src="icecreamv1.png" alt="Ice cream truck preview 1"></div>
+                        <div class="preview-tile clickable"><img src="icecreamv2.png" alt="Ice cream truck preview 2"></div>
+                        <div class="preview-tile clickable"><img src="icecreamv3.png" alt="Ice cream truck preview 3"></div>
+                        <div class="preview-tile clickable"><img src="icecreamv4.png" alt="Ice cream truck preview 4"></div>
+                        <div class="preview-tile preview-more">And 41 more...</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="preview-left">
+                    <img src="river_girl.png" alt="Mapart building preview">
+                </div>
+                <div>
+                    <h3>Mapart Building</h3>
+                    <p>I love building maps, with friends or solo. Bringing awesome artworks from amazing artists onto 2B2T is one of my greatest passions on 2B2T. If you have a cool mapart design you want to see on 2B2T, feel free to contact me :D.</p>
+                    <span class="status">✅ Ongoing</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="preview-left">
+                    <img src="sappling.png" alt="Tree & food spawn project preview">
+                </div>
+                <div>
+                    <h3>Tree & Food Spawn Project</h3>
+                    <p>I plant lots of tree of all kinds around spawn to help new players surviving their first days on 2B2T. Along with food drops for starving players...</p>
+                    <span class="status">✅ Ongoing</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="preview-left">
+                    <img src="Written_Book.gif" alt="Signed books preview">
+                </div>
+                <div>
+                    <h3>📖 Signed Book Spreading at Spawn</h3>
+                    <p>I write and drop signed books all around spawn at cool Locations. Maybe one day you will find one too!</p>
+                    <span class="status">✅ Ongoing</span>
+                </div>
+            </div>
+        </div>
+        <div class="more-note">And many more :D</div>
+    </div>
+
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" id="imageModalClose">×</button>
+            <img class="image-modal-img" id="imageModalImg" alt="Enlarged preview">
+        </div>
+    </div>
+
+    <script>
+        const imageModal = document.getElementById('imageModal');
+        const imageModalImg = document.getElementById('imageModalImg');
+        const imageModalClose = document.getElementById('imageModalClose');
+
+        function openImageModal(src) {
+            imageModalImg.src = src;
+            imageModal.classList.add('show');
+        }
+
+        imageModalClose.onclick = () => imageModal.classList.remove('show');
+        imageModal.onclick = (e) => {
+            if (e.target === imageModal) imageModal.classList.remove('show');
+        };
+
+        // Make ice cream truck tiles clickable
+        document.querySelectorAll('.preview-tile.clickable').forEach(tile => {
+            tile.onclick = (e) => {
+                if (e.target.tagName === 'IMG') {
+                    openImageModal(e.target.src);
+                }
+            };
+        });
+    </script>
+</body>
+</html>
